@@ -1,0 +1,44 @@
+{% extends "../store/base.html" %}
+{% load static %}
+{% block title %}VRM{% endblock %}
+{% block content %}
+
+{% for about in aboutlist %}
+
+<div class="banner-img about-banner">
+    <a class="text-dark text-decoration-none" href="#">
+      <img src="{{ about.image.url }}" class="w-100" alt="">
+    </a>
+</div>
+<div class="container-fluid">
+  <div class="container mt-5">
+    <p class="text-dark fs-1 fw-bold mb-4">{{about.name}}</p>
+    <p class="fs-5 mb-5 lh-lg">{{about.description}}</p>
+  </div>
+</div>
+
+{% endfor %}
+
+{% for info in aboutinfo %}
+<div class="container-fluid">
+  <div class="container about-content">
+    <div class="row align-items-center">
+      <div class="col">
+        <h2 class="text-dark fs-1 fw-bold mb-5">{{info.title}}</h2>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-md-6">
+        <p class="text-dark fs-5 lh-lg mb-0">{{info.description}}</p>
+      </div>
+      <div class="col-md-6">
+        <a class="text-dark text-decoration-none float-md-end" href="#">
+          <img src="{{ info.image.url }}" class="img-responsive rounded" alt="about-images">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "../store/base.html" %}
+{% load static %}
+{% block title %}VRM{% endblock %}
+{% block content %}
+
+
+
+{% for certs in certs %}
+<div class="mt-all-152 quality-banner">
+  <a class="text-dark text-decoration-none" href="#">
+    <img src="{{ certs.image.url }}" class="w-100" alt="Image">
+  </a>
+</div>
+<div class="container-fluid">
+  <div class="container mt-5">
+    <p class="text-dark fs-1 fw-bold mb-4">{{certs.name}}</p>
+    <p class="fs-5 mb-5 lh-lg">{{certs.description}}</p>
+  </div>
+</div>
+
+{% endfor %}
+
+
+{% for certstitle in certstitle %}
+<div class="container-fluid">
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2 class="text-dark fs-1 fw-bold mb-5">{{certstitle.title}}</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+        {% for certsimg in certsimg %}
+      <div class="col-xl-4 col-md-6 col-lg-4  wow fadeInLeft animated" data-wow-delay="0ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInLeft;">
+        <div class="blog-one__single">
+          <div class="blog-one__single-img">
+            <img src="{{ certsimg.image.url }}" alt="Rice Manufacturers in India" class="certs-images">
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+{% for certs in certslist %}
+<div class="fruite-img">
+  <a class="text-dark text-decoration-none" href="#">
+    <img src="{{ certs.image.url }}" class="h-50 w-100" alt="Image">
+  </a>
+</div>
+<div class="container mt-5">
+<p class="text-dark fs-1 fw-bold mb-4">{{certs.name}}</p>
+<p class="fs-5 mb-5 lh-lg">{{certs.description}}</p>
+</div>
+
+{% endfor %}

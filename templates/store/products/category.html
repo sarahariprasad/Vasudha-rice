@@ -1,0 +1,40 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}
+{% if category %}{{ category.name }}{% else %}Products{% endif %}
+{% endblock %}
+{% block content %}
+
+<main>
+  <div class="container sp-ct">
+    <div class="row">
+      <div class="album py-5">
+        <div class="pb-3"><h1 class="h3">Popular</h1></div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+          {% for product in products %}
+          <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="rounded position-relative fruite-item border border-secondary rounded-bottom">
+                <div class="fruite-img">
+                  <a class="text-dark text-decoration-none" href="{{ product.get_absolute_url }}">
+                    <img src="{{ product.image.url }}" class="img-fluid w-100 rounded-top" alt="">
+                  </a>
+                </div>
+                <div class="p-4 border-top-0 mob-display">
+                    <h4><a class="text-dark text-decoration-none fw-bold"
+                      href="{{ product.get_absolute_url }}">{{ product.title|slice:":50" }}...</a></h4>
+                    <p>{{product.description}}</p>
+                    <div class="d-flex justify-content-between flex-lg-wrap">
+                        <p class="text-dark fs-6 fw-bold mb-0"><del>Rs.{{product.price}} / {{product.weight}}</del></p>
+                        <p class="text-dark fs-6 fw-bold mb-0">Rs.{{product.discont_price}} / {{product.weight}}</p>
+                        <a href="{{ product.get_absolute_url }}" class="btn border border-secondary rounded-pill px-3 mt-3 text-primary btn-dark-rd" ><i class="fa fa-shopping-bag me-2"></i> Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

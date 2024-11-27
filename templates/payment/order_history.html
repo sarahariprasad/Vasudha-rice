@@ -1,0 +1,40 @@
+{% extends "../store/base.html" %}
+{% load static %}
+{% block title %}VRM{% endblock %}
+{% block content %}
+<div class="col-md-12 mb-4 mt-3 about-mt-150">
+    <!-- {{ form.as_p }} -->
+    <div class="container-fluid">
+    <div class="container py-5">
+        <h2 class="text-primary p-4 ps-0">Order History Summary</h2>
+        {% if orders %}
+            <ul class="list-group">
+                {% for order in orders %}
+                    <li class="list-group-item">
+                        <h4>Order ID: {{ order.id }}</h4>
+                        <p>
+                            <span class="w-25"><strong>Date:&nbsp;</strong> {{ order.order_date }}</span>
+                            <span class="w-25 text-secondary"><strong>Status:&nbsp;{{ order.get_order_status_display }}</strong> </span>
+                            <span class="w-25"><strong>Total Amount:&nbsp;</strong> ₹.{{ order.total_amount }}</span> 
+                            <span class="w-25"><strong>Payment Method:</strong> {{ order.get_payment_method_display }}</span>
+                        </p>
+                        <p><strong>Shipping Address: &nbsp;</strong> {{ order.address }}, {{ order.city }}, {{ order.state }} - {{ order.post_code }}</p>
+                        <h5>Items:</h5>
+                        <ul>
+                            {% for item in order.items.all %}
+                                <li>{{ item.quantity }} x {{ item.product.title }} = ₹.{{ item.price }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% if order.order_status in 'PENDING' or order.order_status in 'PROCESSING' %}
+                            <a href="{% url 'payment:cancel_order' order.id %}" class="btn border-secondary mt-3 btn-dark-rd">Cancel Order</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p  class="fs-5">It looks like you haven't placed any orders yet. Browse our products and place your first order today!</p>
+        {% endif %}
+    </div>
+</div>  
+</div>
+{% endblock %}

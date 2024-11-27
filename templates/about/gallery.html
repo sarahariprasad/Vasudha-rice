@@ -1,0 +1,47 @@
+{% extends "../store/base.html" %}
+{% load static %}
+{% block title %}VRM{% endblock %}
+{% block content %}
+
+{% for gallery in gallery %}
+
+<div class="mt-all-152 gallery-banner">
+    <a class="text-dark text-decoration-none" href="#">
+      <img src="{{ gallery.image.url }}" class="w-100" alt="">
+    </a>
+</div>
+<div class="container-fluid">
+  <div class="container mt-5">
+    <p class="text-dark fs-1 fw-bold mb-4">{{gallery.name}}</p>
+    <p class="fs-5 mb-5 lh-lg">{{gallery.description}}</p>
+  </div>
+</div>
+{% endfor %}
+
+<div class="container-fluid">
+  <div class="container">
+    {% for gallerytitle in gallerytitle %}
+    <div class="row align-items-center">
+        <div class="col">
+          <h2 class="text-dark fs-1 fw-bold mb-5">{{gallerytitle.title}}</h2>
+        </div>
+      </div>
+      {% endfor %}
+    <div class="row">
+        {% for gallerytwo in gallerytwo %}
+      <div class="col-xl-4 col-md-6 col-lg-4  wow fadeInLeft animated" data-wow-delay="0ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInLeft;">
+        <div class="blog-one__single">
+          <div class="blog-one__single-img">
+            <img src="{{ gallerytwo.image.url }}" alt="Rice Manufacturers in India" class="gallery-images">
+          </div>
+          <div class="blog-one__single-content">
+            <span><a href="https://www.mahavirricemill.com/rice-manufacturers-in-india-tradition-technology-and-transformation" class="blog-one__single-text">{{gallerytwo.description}}</a></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
